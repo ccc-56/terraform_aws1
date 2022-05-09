@@ -1,11 +1,15 @@
-resource "aws_subnet" "my_subnet" {
-  vpc_id            = "${var.vpc_id}"
-  cidr_block        = "172.16.10.0/24"
-  availability_zone = "ap-south-1a"
-
-  tags = {
-    Name = "tf-example"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
   }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "ap-south-1"
 }
 
 resource "aws_network_interface" "test" {
@@ -18,7 +22,7 @@ resource "aws_network_interface" "test" {
 }
 
 resource "aws_instance" "intest" {
-  ami           = "ami-005e54dee72cc1d00" # us-west-2
+  ami           = "ami-0756a1c858554433e"
   instance_type = "t2.micro"
   availability_zone = "ap-south-1a"
 
