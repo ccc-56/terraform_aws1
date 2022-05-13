@@ -42,8 +42,8 @@ resource "aws_instance" "intest" {
 
 }
 
-resource "aws_db_subnet_group" "education" {
-  name       = "education"
+resource "aws_db_subnet_group" "efcation" {
+  name       = "someedu"
   subnet_ids = ["${var.subnet_db}","${var.subnet_db1}"]
 
   tags = {
@@ -62,6 +62,6 @@ resource "aws_db_instance" "default" {
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
-  db_subnet_group_name = aws_db_subnet_group.education.name
+  db_subnet_group_name = aws_db_subnet_group.efcation.name
 }
 
