@@ -10,11 +10,12 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = "ap-south-1"
+  profile = "source"
 }
 
 resource "aws_network_interface" "test" {
   subnet_id   = "${var.sub_id}"
-  private_ips = ["10.44.2.100"]
+  private_ips = ["10.44.2.101"]
 
   tags = {
     Name = "primary_network_interface"
@@ -34,4 +35,9 @@ resource "aws_instance" "intest" {
   credit_specification {
     cpu_credits = "unlimited"
   }
+
+  tags = {
+    Name = "HelloWorld1"
+  }
+
 }
