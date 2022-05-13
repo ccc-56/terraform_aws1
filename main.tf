@@ -42,6 +42,15 @@ resource "aws_instance" "intest" {
 
 }
 
+resource "aws_db_subnet_group" "education" {
+  name       = "education"
+  subnet_ids = ["${var.subnet_db}","${var.subnet_db1}"]
+
+  tags = {
+    Name = "php-Education"
+  }
+}
+
 
 resource "aws_db_instance" "default" {
   allocated_storage    = 10
@@ -53,4 +62,6 @@ resource "aws_db_instance" "default" {
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
+  db_subnet_group_name = aws_db_subnet_group.education.name
 }
+
